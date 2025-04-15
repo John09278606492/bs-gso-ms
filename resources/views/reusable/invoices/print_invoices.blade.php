@@ -48,7 +48,7 @@
 </head>
 <div style="margin: 0 auto; padding: 0.5rem; background-color: #fff; border-radius: 0.5rem; color: #333; font-family: 'DejaVu Sans', sans-serif; font-size: 11px;">
     <h1 style="margin-bottom: 0.5rem; font-size: 16px; font-weight: bold; text-align: right; color: #000; line-height: 1.2;">INVOICE</h1>
-    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 10px; line-height: 0.5;">BISU Calape PTGEA MS</p>
+    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 10px; line-height: 0.5;">BISU Calape GSO MS</p>
 
     <div style="padding: 0.10rem 0.75rem; line-height: .80;">
         <h2 style="margin-bottom: 0.5rem; font-size: 13px; font-weight: bold;">Student Information</h2>

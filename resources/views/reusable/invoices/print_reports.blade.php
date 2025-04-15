@@ -29,7 +29,7 @@
             <h3 style="margin: 0;">Republic of the Philippines</h3>
             <h3 style="margin: 0;">BOHOL ISLAND STATE UNIVERSITY</h3>
             <h3 style="margin: 0;">San Isidro, Calape, Bohol</h3>
-            <h4 style="margin: 0;">Parents, Teachers, Guardians & Employees Association</h4>
+            <h4 style="margin: 0;">Graduating Students Organization</h4>
             <p style="margin: 0;">Balance | Integrity | Stewardship | Uprightness</p>
         </div>
 

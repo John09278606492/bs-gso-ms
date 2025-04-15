@@ -61,7 +61,7 @@
 @endphp
 <div style="padding: 10px; background-color: white; font-family: 'DejaVu Sans', sans-serif; font-size: 12px;">
     <h1 style="text-align: right; font-size: 16px; margin-bottom: 10px;">INVOICE</h1>
-    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 15px; line-height: 0.5;">BISU Calape PTGEA MS</p>
+    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 15px; line-height: 0.5;">BISU Calape GSO MS</p>
 
     <div style="margin-bottom: 10px;">
         <h2 style="font-size: 14px; margin-bottom: 5px;">Student Information</h2>

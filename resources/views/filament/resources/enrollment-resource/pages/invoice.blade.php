@@ -46,7 +46,7 @@
 
     <div class="p-6 bg-white rounded-lg shadow dark:bg-gray-800 dark:text-gray-200">
         <h1 class="mb-6 text-2xl font-bold text-right dark:text-white">INVOICE</h1>
-        <p class="mb-6 text-right text-.5xl dark:text-white">BISU Calape PTGEA MS</p>
+        <p class="mb-6 text-right text-.5xl dark:text-white">BISU Calape GSO MS</p>
 
         <div class="p-4 mb-6">
             <h2 class="mb-4 text-xl font-semibold dark:text-white">Student Information</h2>

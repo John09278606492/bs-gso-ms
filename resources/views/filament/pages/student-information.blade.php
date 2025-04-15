@@ -212,7 +212,7 @@
                 <div class="p-3 bg-white rounded-lg shadow sm:p-6 dark:bg-gray-800 dark:text-gray-200">
                     <!-- Invoice Header -->
                     <h1 class="mb-4 text-xl font-bold text-right sm:mb-6 sm:text-2xl dark:text-white">INVOICE</h1>
-                    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 15px; line-height: 0.5;">BISU Calape PTGEA MS</p>
+                    <p style="margin-bottom: 0.25rem; text-align: right; font-size: 15px; line-height: 0.5;">BISU Calape GSO MS</p>
 
                     <!-- Student Information -->
                     <div class="p-3 mb-4 sm:p-4 sm:mb-6">
