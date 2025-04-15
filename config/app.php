@@ -171,7 +171,6 @@ return [
         App\Providers\Filament\AdminPanelProvider::class,
         App\Providers\RouteServiceProvider::class,
         \SocialiteProviders\Manager\ServiceProvider::class,
-        Faker\Factory::class,
         // Barryvdh\Debugbar\ServiceProvider::class,
     ])->toArray(),
 
