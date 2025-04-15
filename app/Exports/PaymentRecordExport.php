@@ -125,7 +125,7 @@ class PaymentRecordExport implements
                 $sheet->setCellValue('B2', 'Republic of the Philippines');
                 $sheet->setCellValue('B3', 'BOHOL ISLAND STATE UNIVERSITY'); // Less indentation
                 $sheet->setCellValue('B4', 'San Isidro, Calape, Bohol');
-                $sheet->setCellValue('B5', 'Parents, Teachers, Guardians & Employees Association');
+                $sheet->setCellValue('B5', 'Graduating Students Organization');
                 $sheet->setCellValue('B6', 'Balance | Integrity | Stewardship | Uprightness');
 
                 $sheet->getStyle('B2:B6')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER)->setIndent(20);

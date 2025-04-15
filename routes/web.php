@@ -25,7 +25,7 @@ use Illuminate\Support\Facades\Response;
 */
 
 Route::get('/', function () {
-    return redirect('/admin'); // Change '/admin' to the correct URL of your panel
+    return redirect(filament()->getUrl()); // Change '/admin' to the correct URL of your panel
 });
 
 // Route::get('/', function () {

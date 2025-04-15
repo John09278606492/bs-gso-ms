@@ -150,7 +150,7 @@ class StudentpaymentExport implements WithMapping, WithHeadings, ShouldAutoSize,
                 $sheet->setCellValue('C2', 'Republic of the Philippines');
                 $sheet->setCellValue('C3', 'BOHOL ISLAND STATE UNIVERSITY');
                 $sheet->setCellValue('C4', 'San Isidro, Calape, Bohol');
-                $sheet->setCellValue('C5', 'Parents, Teachers, Guardians & Employees Association');
+                $sheet->setCellValue('C5', 'Graduating Students Organization');
                 $sheet->setCellValue('C6', 'Balance | Integrity | Stewardship | Uprightness');
 
                 $sheet->getStyle('C2:C6')->getAlignment()->setVertical(\PhpOffice\PhpSpreadsheet\Style\Alignment::VERTICAL_CENTER)->setIndent(12);

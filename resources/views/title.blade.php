@@ -9,6 +9,6 @@
             Bohol Island State University - Calape Campus
         </div>
         <!-- Main Heading -->
-        <p class="mt-4 text-2xl font-bold">Parents, Teachers, Guardians and Employees Association Management System</p>
+        <p class="mt-4 text-2xl font-bold">Graduating Students Organization Management System</p>
     </div>
 </header>
