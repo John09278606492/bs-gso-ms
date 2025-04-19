@@ -62,6 +62,7 @@ class InvoiceController extends Controller
             // Generate the PDF with valid page size
             $pdf = SnappyPdf::loadHTML($html)
                 // ->setPaper('A4') // or use ->setOption('page-width', '80mm')->setOption('page-height', '150mm')
+                ->setPaper($customPaper)
                 ->setOption('page-width', '80mm')
                 ->setOption('page-height', '150mm')
                 ->setOptions([
