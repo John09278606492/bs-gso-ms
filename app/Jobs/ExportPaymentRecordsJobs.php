@@ -35,7 +35,8 @@ class ExportPaymentRecordsJobs implements ShouldQueue
         $filePath = 'exports/' . $fileName;
 
         // ✅ Store the export file in the public disk
-        Excel::store(new PaymentRecordExport($this->date_from, $this->date_to), $filePath, 'public');
+        // Excel::store(new PaymentRecordExport($this->date_from, $this->date_to), $filePath, 'public');
+        Excel::download(new PaymentRecordExport($this->date_from, $this->date_to), $fileName);
 
         Log::info("Export file stored at: " . $filePath);
 
