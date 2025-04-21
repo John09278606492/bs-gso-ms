@@ -35,7 +35,7 @@ class ExportPaymentRecordsJobs implements ShouldQueue
         $filePath = 'exports/' . $fileName;
 
         // ✅ Store the export file in the public disk
-        Excel::store(new PaymentRecordExport($this->date_from, $this->date_to), $filePath, 'local');
+        Excel::store(new PaymentRecordExport($this->date_from, $this->date_to), $filePath, 'public');
 
         Log::info("Export file stored at: " . $filePath);
 
@@ -43,8 +43,8 @@ class ExportPaymentRecordsJobs implements ShouldQueue
             Log::info("Sending notification to user: " . $this->user->id);
 
             // ✅ Correctly generate the download URL
-            $downloadUrl = Storage::url($filePath);
-            // $downloadUrl = Storage::url('exports/' . $fileName);
+            // $downloadUrl = Storage::url($filePath);
+            $downloadUrl = asset('storage/' . $filePath);
 
             Log::info("Download URL: " . $downloadUrl);
             dd($downloadUrl);
