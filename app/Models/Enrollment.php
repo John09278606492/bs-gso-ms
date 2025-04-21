@@ -130,7 +130,7 @@ class Enrollment extends Model
 
         $balance = ($collectionsTotal + $yearlevelPaymentsTotal) - $totalAmount;
 
-        return number_format($balance, 2);
+        return round($balance, 2);
     }
 
     public function getRefundableAmountAttribute(): string
