@@ -28,7 +28,7 @@ class PaymentsRelationManager extends RelationManager
                     ->stripCharacters(',')
                     ->extraInputAttributes(['onInput' => 'this.value = this.value.replace(/[^\d.]/g, "").replace(/(\..*?)\.+/g, "$1").replace(/\B(?=(\d{3})+(?!\d))/g, ",")'])
                     ->numeric()
-                    ->prefixIcon('heroicon-m-peso-symbol')
+                    // ->prefixIcon('heroicon-m-peso-symbol')
                     ->required(),
             ]);
     }
