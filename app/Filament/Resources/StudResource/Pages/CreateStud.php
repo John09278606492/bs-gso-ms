@@ -71,7 +71,7 @@ class CreateStud extends CreateRecord
         $middleName = $this->record->middlename;
         $lastName = $this->record->lastname;
         $fullName = "{$firstName} {$middleName} {$lastName}";
-        $email1 = "ptgea@{$studentId}";
+        $email1 = "gso@{$studentId}";
         $role = "guest";
         $hashedPassword = Hash::make($studentId); // Hash the student ID for password
         $firstName = $this->sanitizeName($firstName ?? '');

@@ -102,7 +102,7 @@ class UserImporter extends Importer
             [
                 'name' => ucwords($firstName . ' ' . $lastName),
                 'email' => $email1,
-                'email1' => 'ptgea' . '@' . $student->studentidn,
+                'email1' => 'gso' . '@' . $student->studentidn,
                 'password' => Hash::make($student->studentidn),
                 'role' => 'guest',
             ]
