@@ -34,19 +34,18 @@ class ExportPaymentRecordsJobs implements ShouldQueue
         $fileName = 'Student-Payment-Records-Export-' . now()->timestamp . '.xlsx';
         $filePath = 'exports/' . $fileName;
 
-        // ✅ Store the export file
+        // ✅ Store the export file in the public disk
         Excel::store(new PaymentRecordExport($this->date_from, $this->date_to), $filePath, 'public');
 
         Log::info("Export file stored at: " . $filePath);
 
-        // ✅ Generate the public URL
-
-
-        // ✅ Notify the user
         if ($this->user) {
             Log::info("Sending notification to user: " . $this->user->id);
 
-            $downloadUrl = Storage::disk($filePath);
+            // ✅ Correctly generate the download URL
+            $downloadUrl = Storage::url($filePath);
+
+            dd('File path: ' . $filePath . ' Download URL: ' . $downloadUrl);
 
             Notification::make()
                 ->title('Student Payment Records Export Ready')
@@ -62,6 +61,7 @@ class ExportPaymentRecordsJobs implements ShouldQueue
             Log::error("User not found while sending export notification.");
         }
     }
+
 
     // public function handle()
     // {
