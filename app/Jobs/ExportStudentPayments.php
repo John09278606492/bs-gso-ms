@@ -47,7 +47,7 @@ class ExportStudentPayments implements ShouldQueue
             $this->program_id,
             $this->yearlevel_id,
             $this->status
-        ), $tempPath, 'local');
+        ), $tempPath, 'public');
 
         // ✅ Move the file to public/exports directory
         $storagePath = storage_path('app/' . $tempPath);
