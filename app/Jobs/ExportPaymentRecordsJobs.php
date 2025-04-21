@@ -91,7 +91,7 @@ class ExportPaymentRecordsJobs implements ShouldQueue
         }
 
         // ✅ Generate the public URL
-        $downloadUrl = asset('exports/' . $fileName);
+        $downloadUrl = public_path('exports/' . $fileName);
 
         // ✅ Notify the user
         if ($this->user) {
