@@ -54,7 +54,7 @@ class PaysRelationManager extends RelationManager
                                     ? 'Refundable Balance'
                                     : 'Running Balance'
                             )
-                            ->prefixIcon('heroicon-m-peso-symbol')
+                            // ->prefixIcon('heroicon-m-peso-symbol')
                             ->default(
                                 fn($livewire) => ($livewire->ownerRecord?->getBalanceAttribute() < 0)
                                     ? number_format(abs($livewire->ownerRecord?->getBalanceAttribute()), 2)
@@ -216,7 +216,7 @@ class PaysRelationManager extends RelationManager
                                 'onInput' => 'this.value = this.value.replace(/[^\d.]/g, "").replace(/(\..*?)\.+/g, "$1").replace(/\B(?=(\d{3})+(?!\d))/g, ",")',
                             ])
                             ->numeric()
-                            ->prefixIcon('heroicon-m-peso-symbol')
+                            // ->prefixIcon('heroicon-m-peso-symbol')
                             ->rules([
                                 function () {
                                     return function ($attribute, $value, $fail) {
@@ -251,7 +251,7 @@ class PaysRelationManager extends RelationManager
                         Forms\Components\TextInput::make('amount_tendered')
                             ->label('Tender Amount')
                             ->placeholder('0.00')
-                            ->prefixIcon('heroicon-m-peso-symbol')
+                            // ->prefixIcon('heroicon-m-peso-symbol')
                             ->mask(RawJs::make('$money($input)'))
                             ->stripCharacters(',')
                             ->numeric()
