@@ -46,7 +46,7 @@ class ExportPaymentRecordsJobs implements ShouldQueue
         if ($this->user) {
             Log::info("Sending notification to user: " . $this->user->id);
 
-            $downloadUrl = Storage::url($filePath);
+            $downloadUrl = Storage::disk($filePath);
 
             Notification::make()
                 ->title('Student Payment Records Export Ready')
