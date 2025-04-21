@@ -69,12 +69,12 @@ return [
     |
     */
 
-    'links' => [
-        public_path('storage') => storage_path('app/public'),
-    ],
-
     // 'links' => [
-    //     public_path('storage') => env('APP_STORAGE_PATH', base_path('storage/app/public')),
+    //     public_path('storage') => storage_path('app/public'),
     // ],
+
+    'links' => [
+        public_path('storage') => env('APP_STORAGE_PATH', base_path('storage/app/public')),
+    ],
 
 ];
