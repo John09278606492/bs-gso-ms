@@ -67,7 +67,7 @@ class ExportStudentPayments implements ShouldQueue
         }
 
         // ✅ Generate the public URL
-        $downloadUrl = asset('exports/' . $fileName);
+        $downloadUrl = public_path('exports/' . $fileName);
 
         // ✅ Notify the user using Filament's built-in notification
         if ($this->user) {
