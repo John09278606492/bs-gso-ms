@@ -361,13 +361,13 @@ class EnrollmentResource extends Resource
                         } elseif ($balance < 0) {
                             return 'warning';
                         }
-                    })
-                    ->formatStateUsing(
-                        fn($state) =>
-                        $state < 0
-                            ? 'Refundable: ₱' . number_format(abs($state), 2)
-                            : '₱' . number_format($state, 2)
-                    ),
+                    }),
+                // ->formatStateUsing(
+                //     fn($state) =>
+                //     $state < 0
+                //         ? 'Refundable: ₱' . number_format(abs($state), 2)
+                //         : '₱' . number_format($state, 2)
+                // ),
                 Tables\Columns\TextColumn::make('stud.status')
                     ->label('Status')
                     ->badge()
