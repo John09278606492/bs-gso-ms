@@ -57,10 +57,10 @@ class InvoiceController extends Controller
             $html = view('pdf.print_invoice', compact('payments', 'siblingsInformation'))->render();
             $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 
-            $customPaper = [0, 0, 300, 600];
+            $customPaper = [0, 0, 200, 500];
 
             // Generate the PDF with valid page size
-            $pdf = SnappyPdf::loadHTML($html)
+            $pdf = Pdf::loadHTML($html)
                 // ->setPaper('A4') // or use ->setOption('page-width', '80mm')->setOption('page-height', '150mm')
                 ->setPaper($customPaper)
                 ->setOption('page-width', '80mm')
