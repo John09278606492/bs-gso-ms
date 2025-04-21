@@ -32,19 +32,21 @@ class SemestersRelationManager extends RelationManager
                     ->schema([
                         Forms\Components\TextInput::make('schoolyear_id')
                             ->hidden()
-                            ->default(fn (RelationManager $livewire) => $livewire->ownerRecord->id),
+                            ->default(fn(RelationManager $livewire) => $livewire->ownerRecord->id),
                         Forms\Components\TextInput::make('semester')
                             ->required()
                             ->numeric()
                             ->minValue(1)
                             ->maxValue(2)
-                            ->unique(modifyRuleUsing: function (Unique $rule, callable $get) {
-                                $semester = $get('semester');
-                                $schoolyear_id = $get('schoolyear_id');
+                            ->unique(
+                                modifyRuleUsing: function (Unique $rule, callable $get) {
+                                    $semester = $get('semester');
+                                    $schoolyear_id = $get('schoolyear_id');
 
-                                return $rule->where('schoolyear_id', $schoolyear_id)->where('semester', $semester);
-                            },
-                                ignoreRecord: true, ),
+                                    return $rule->where('schoolyear_id', $schoolyear_id)->where('semester', $semester);
+                                },
+                                ignoreRecord: true,
+                            ),
                         Repeater::make('collections')
                             ->relationship()
                             ->schema([
@@ -53,7 +55,7 @@ class SemestersRelationManager extends RelationManager
                                     ->stripCharacters(',')
                                     ->extraInputAttributes(['onInput' => 'this.value = this.value.replace(/[^\d.]/g, "").replace(/(\..*?)\.+/g, "$1").replace(/\B(?=(\d{3})+(?!\d))/g, ",")'])
                                     ->numeric()
-                                    ->prefixIcon('heroicon-m-peso-symbol')
+                                    // ->prefixIcon('heroicon-m-peso-symbol')
                                     ->required(),
                                 TextInput::make('description')
                                     ->required()
@@ -102,7 +104,8 @@ class SemestersRelationManager extends RelationManager
                             ->success()
                             ->color('success')
                             ->icon('heroicon-o-check-circle')
-                            ->title('Semester added successfully!')),
+                            ->title('Semester added successfully!')
+                    ),
             ])
             ->actions([
                 Tables\Actions\EditAction::make()
@@ -111,14 +114,16 @@ class SemestersRelationManager extends RelationManager
                             ->success()
                             ->color('success')
                             ->icon('heroicon-o-check-circle')
-                            ->title('Semester updated successfully!')),
+                            ->title('Semester updated successfully!')
+                    ),
                 Tables\Actions\DeleteAction::make()
                     ->successNotification(
                         Notification::make()
                             ->success()
                             ->color('success')
                             ->icon('heroicon-o-check-circle')
-                            ->title('Semester deleted successfully!')),
+                            ->title('Semester deleted successfully!')
+                    ),
             ])
             ->bulkActions([
                 Tables\Actions\BulkActionGroup::make([
@@ -128,7 +133,8 @@ class SemestersRelationManager extends RelationManager
                                 ->success()
                                 ->color('success')
                                 ->icon('heroicon-o-check-circle')
-                                ->title('Semesters deleted successfully!')),
+                                ->title('Semesters deleted successfully!')
+                        ),
                 ]),
             ])
             ->emptyStateHeading('No semesters yet')
