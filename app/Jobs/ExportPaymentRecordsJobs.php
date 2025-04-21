@@ -47,6 +47,7 @@ class ExportPaymentRecordsJobs implements ShouldQueue
             // $downloadUrl = Storage::url('exports/' . $fileName);
 
             Log::info("Download URL: " . $downloadUrl);
+            dd($downloadUrl);
 
             Notification::make()
                 ->title('Student Payment Records Export Ready')
