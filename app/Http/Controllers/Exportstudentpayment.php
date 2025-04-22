@@ -123,7 +123,6 @@ class Exportstudentpayment extends Controller
         $fileName = 'Student-Payment-Records-Export-' . now()->format('Y-m-d_H-i') . '.xlsx';
 
         return (new StudentpaymentExport(
-            $user,
             $schoolyear_id ? (int)$schoolyear_id : null,
             $college_id ? (int)$college_id : null,
             $program_id ? (int)$program_id : null,
