@@ -122,7 +122,7 @@ class UserImporter extends Importer
 
         // Remove non-alphabetic characters (keeps only a-z and A-Z)
         $name = preg_replace('/[^a-zA-Z]/', '', $name);
-
+ 
         // Convert to lowercase
         return strtolower($name);
     }
