@@ -106,7 +106,7 @@ class UserResource extends Resource
                         );
                     }
                 ),
-                Tables\Columns\TextColumn::make('candId')
+                Tables\Columns\TextColumn::make('canId')
                     ->label('Unique IDN (for students only)')
                     ->searchable(),
                 Tables\Columns\TextColumn::make('name')
