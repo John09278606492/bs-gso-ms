@@ -120,6 +120,12 @@ class Exportstudentpayment extends Controller
                 'success' => true
             ]);
         }
+        Notification::make()
+            ->title('EXCEL Export in Progress')
+            ->body('Your student payment information export is being processed. Please wait for a moment.')
+            ->info()
+            ->color('info')
+            ->send();
 
         Notification::make()
             ->title('EXCEL Export in Progress')
@@ -152,17 +158,29 @@ class Exportstudentpayment extends Controller
             }
         }
 
-        // ✅ Dispatch job
-        ExportPaymentRecordsJobs::dispatch($user, $date_from, $date_to);
+        $fileName = 'Student-Payment-Records-Export-' . now()->format('Y-m-d_H-i') . '.xlsx';
 
-        // ✅ Notify user that export is processing
         Notification::make()
             ->title('EXCEL Export in Progress')
-            ->body('Your student payment records export is being processed. You will be notified once it is ready for download.')
+            ->body('Your student payment records export is being processed. Please wait for a moment.')
             ->info()
             ->color('info')
             ->send();
 
-        return back();
+
+        return (new PaymentRecordExport($date_from, $date_to))->download($fileName);
+        // ✅ Dispatch job
+        // ExportPaymentRecordsJobs::dispatch($user, $date_from, $date_to);
+
+        // ✅ Notify user that export is processing
+
+        // Notification::make()
+        //     ->title('EXCEL Export in Progress')
+        //     ->body('Your student payment records export is being processed. You will be notified once it is ready for download.')
+        //     ->info()
+        //     ->color('info')
+        //     ->send();
+
+        // return back();
     }
 }
