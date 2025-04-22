@@ -183,7 +183,7 @@ class Enrollment extends Model
             return 'No Payments';
         }
 
-        return number_format($collectionsTotal, 2);
+        return round($collectionsTotal, 2);
     }
 
     public static function summarizeAmounts(?int $schoolYearId): string
