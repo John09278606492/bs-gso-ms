@@ -41,6 +41,14 @@ class ListPays extends ListRecords
                 ->color('success')
                 ->icon('heroicon-m-printer')
                 ->label('Export to EXCEL')
+                ->action(function () {
+                    Notification::make()
+                        ->title('EXCEL Export in Progress')
+                        ->body('Your student payment records export is being processed. Please wait for a moment.')
+                        ->info()
+                        ->color('info')
+                        ->send();
+                })
                 ->url(function () {
                     // Retrieve the date filter from the table filters
                     $dateFilter = $this->tableFilters['created_at']['created_at'] ?? null;
