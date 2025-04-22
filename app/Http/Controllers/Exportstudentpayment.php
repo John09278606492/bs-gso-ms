@@ -113,12 +113,12 @@ class Exportstudentpayment extends Controller
         //     $status
         // );
 
-        Notification::make()
-            ->title('EXCEL Export in Progress')
-            ->body('Your student payment information export is being processed. Please wait for a moment.')
-            ->info()
-            ->color('info')
-            ->send();
+        // Notification::make()
+        //     ->title('EXCEL Export in Progress')
+        //     ->body('Your student payment information export is being processed. Please wait for a moment.')
+        //     ->info()
+        //     ->color('info')
+        //     ->send();
 
         $fileName = 'Student-Payment-Records-Export-' . now()->format('Y-m-d_H-i') . '.xlsx';
 
