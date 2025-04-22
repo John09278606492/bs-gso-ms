@@ -104,22 +104,15 @@ class Exportstudentpayment extends Controller
         $user = auth()->user(); // Get the logged-in user
 
         // Dispatch the job
-        ExportStudentPayments::dispatch(
-            $user,
-            $schoolyear_id ? (int)$schoolyear_id : null,
-            $college_id ? (int)$college_id : null,
-            $program_id ? (int)$program_id : null,
-            $yearlevel_id ? (int)$yearlevel_id : null,
-            $status
-        );
+        // ExportStudentPayments::dispatch(
+        //     $user,
+        //     $schoolyear_id ? (int)$schoolyear_id : null,
+        //     $college_id ? (int)$college_id : null,
+        //     $program_id ? (int)$program_id : null,
+        //     $yearlevel_id ? (int)$yearlevel_id : null,
+        //     $status
+        // );
 
-        // If this is an AJAX request expecting JSON
-        if ($request->expectsJson() || $request->ajax()) {
-            return response()->json([
-                'message' => 'Export is being processed. You will be notified when it is ready.',
-                'success' => true
-            ]);
-        }
         Notification::make()
             ->title('EXCEL Export in Progress')
             ->body('Your student payment information export is being processed. Please wait for a moment.')
@@ -127,15 +120,34 @@ class Exportstudentpayment extends Controller
             ->color('info')
             ->send();
 
-        Notification::make()
-            ->title('EXCEL Export in Progress')
-            ->body('Your student payment information export is being processed. You will be notified once it is ready for download.')
-            ->info()
-            ->color('info')
-            ->send();
+        $fileName = 'Student-Payment-Records-Export-' . now()->format('Y-m-d_H-i') . '.xlsx';
+
+        return (new StudentpaymentExport(
+            $user,
+            $schoolyear_id ? (int)$schoolyear_id : null,
+            $college_id ? (int)$college_id : null,
+            $program_id ? (int)$program_id : null,
+            $yearlevel_id ? (int)$yearlevel_id : null,
+            $status
+        ))->download($fileName);
+
+        // If this is an AJAX request expecting JSON
+        // if ($request->expectsJson() || $request->ajax()) {
+        //     return response()->json([
+        //         'message' => 'Export is being processed. You will be notified when it is ready.',
+        //         'success' => true
+        //     ]);
+        // }
+
+        // Notification::make()
+        //     ->title('EXCEL Export in Progress')
+        //     ->body('Your student payment information export is being processed. You will be notified once it is ready for download.')
+        //     ->info()
+        //     ->color('info')
+        //     ->send();
 
         // Return a redirect or view as needed
-        return back()->with('status', 'Export Started');
+        // return back()->with('status', 'Export Started');
     }
 
     public function exportPaymentRecord(Request $request)
