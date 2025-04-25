@@ -149,6 +149,68 @@
 
                 @forelse ($payments->collections as $fee)
                     @php
+                        $status = strtolower(optional($fee->pivot)->collection_status ?? 'unpaid');
+                        $amount = $fee->amount ?? 0;
+
+                        if ($status === 'paid') {
+                            $totalPaid += $amount;
+                            $rowColor = 'green';
+                        } else {
+                            $totalUnpaid += $amount;
+                            $rowColor = 'red';
+                        }
+                    @endphp
+                    <tr style="color: {{ $rowColor }};">
+                        <td style="padding: 0.25rem; border: 1px solid #ccc;">
+                            {{ $fee->description }} - Semester {{ $fee->semester->semester ?? '-' }}
+                        </td>
+                        <td style="padding: 0.25rem; border: 1px solid #ccc;">
+                            {{ ucfirst($status) }}
+                        </td>
+                        <td style="padding: 0.25rem; text-align: right; border: 1px solid #ccc;">
+                            ₱{{ number_format($amount, 2) }}
+                        </td>
+                    </tr>
+                @empty
+                    <tr>
+                        <td colspan="3" style="padding: 0.25rem; text-align: center; border: 1px solid #ccc;">
+                            No school year fee type/s available.
+                        </td>
+                    </tr>
+                @endforelse
+            </tbody>
+        </table>
+
+        <div style="text-align: right; margin-top: 0.75rem; font-size: 9px; font-weight: semi-bold;">
+            Total Amount Paid: ₱{{ number_format($totalPaid, 2) }}
+        </div>
+        <div style="text-align: right; margin-top: 0.25rem; font-size: 9px; font-weight: semi-bold;">
+            Total Amount Unpaid: ₱{{ number_format($totalUnpaid, 2) }}
+        </div>
+        <div style="text-align: right; margin-top: 0.25rem; font-size: 11px; font-weight: bold;">
+            Total Amount Due: ₱{{ number_format($totalPaid + $totalUnpaid, 2) }}
+        </div>
+    </div>
+
+
+    {{-- <div style="padding: 0.10rem 0.75rem; line-height: .80;">
+        <h2 style="margin-bottom: 0.5rem; font-size: 13px; font-weight: bold;">Fund Type</h2>
+        <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc; font-size: 11px;">
+            <thead>
+                <tr style="background-color: #f9f9f9;">
+                    <th style="padding: 0.25rem; text-align: left; border: 1px solid #ccc;">Description</th>
+                    <th style="padding: 0.25rem; text-align: left; border: 1px solid #ccc;">Status</th>
+                    <th style="padding: 0.25rem; text-align: right; border: 1px solid #ccc;">Amount</th>
+                </tr>
+            </thead>
+            <tbody>
+                @php
+                    $totalPaid = 0;
+                    $totalUnpaid = 0;
+                @endphp
+
+                @forelse ($payments->collections as $fee)
+                    @php
                         $collectionStatus = optional($fee->pivot)->collection_status;
                         $rowColor = is_null($collectionStatus) ? 'red' : 'green';
 
@@ -188,7 +250,7 @@
         <div style="text-align: right; margin-top: 0.25rem; font-size: 11px; font-weight: bold;">
             Total Amount Due: ₱{{ number_format($totalPaid + $totalUnpaid, 2) }}
         </div>
-    </div>
+    </div> --}}
 
 
     <div style="padding: 0.10rem 0.75rem; line-height: .80;">

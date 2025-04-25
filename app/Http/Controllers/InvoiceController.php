@@ -57,7 +57,7 @@ class InvoiceController extends Controller
             $html = view('pdf.print_invoice', compact('payments', 'siblingsInformation'))->render();
             $html = mb_convert_encoding($html, 'UTF-8', 'UTF-8');
 
-            $customPaper = [0, 0, 200, 800];
+            $customPaper = [0, 0, 200, 1000];
 
             // Generate the PDF with valid page size
             $pdf = Pdf::loadHTML($html)
