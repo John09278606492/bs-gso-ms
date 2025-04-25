@@ -134,7 +134,7 @@
         <div style="text-align: right; margin-top: 0.5rem; font-size: 11px; font-weight: bold;">Total: ₱{{ number_format($payments->yearlevelpayments->sum('amount'), 2) }}</div>
     </div> --}}
 
-    <div style="padding: 0.10rem 0.75rem; line-height: .80;">
+    {{-- <div style="padding: 0.10rem 0.75rem; line-height: .80;">
         <h2 style="margin-bottom: 0.5rem; font-size: 13px; font-weight: bold;">Fund Type</h2>
         <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc; font-size: 11px;">
             <thead>
@@ -193,10 +193,10 @@
         <div style="text-align: right; margin-top: 0.25rem; font-size: 11px; font-weight: bold;">
             Total Amount Due: ₱{{ number_format($totalPaid + $totalUnpaid, 2) }}
         </div>
-    </div>
+    </div> --}}
 
 
-    {{-- <div style="padding: 0.10rem 0.75rem; line-height: .80;">
+    <div style="padding: 0.10rem 0.75rem; line-height: .80;">
         <h2 style="margin-bottom: 0.5rem; font-size: 13px; font-weight: bold;">Fund Type</h2>
         <table style="width: 100%; border-collapse: collapse; border: 1px solid #ccc; font-size: 11px;">
             <thead>
@@ -253,7 +253,7 @@
         <div style="text-align: right; margin-top: 0.25rem; font-size: 11px; font-weight: bold;">
             Total Amount Due: ₱{{ number_format($totalPaid + $totalUnpaid, 2) }}
         </div>
-    </div> --}}
+    </div>
 
 
     <div style="padding: 0.10rem 0.75rem; line-height: .80;">
