@@ -9,6 +9,9 @@
     }
 </style>
 @php
+    header("Cache-Control: no-cache, no-store, must-revalidate");
+    header("Pragma: no-cache");
+    header("Expires: 0");
     $paidAmount = $payments->pays->where('status1', 'paid')->sum('amount');
     $refundedAmount = $payments->pays->where('status1', 'refunded')->sum('amount');
     $totalPays = $paidAmount - $refundedAmount;
