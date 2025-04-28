@@ -217,7 +217,7 @@ class PaymentRecordExport implements
 
                 // Add summary values
                 $sheet->setCellValue("H{$summaryRow}", 'Total Amount Collected:');
-                $sheet->setCellValue("I{$summaryRow}", number_format($this->totalPayments, 2));
+                $sheet->setCellValue("I{$summaryRow}", number_format($this->totalPayments - $this->totalRefunded, 2));
 
                 // Apply bold and right alignment
                 $sheet->getStyle("H{$summaryRow}:I{$summaryRow}")->applyFromArray([
