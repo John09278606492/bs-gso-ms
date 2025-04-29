@@ -45,6 +45,8 @@ class StudResource extends Resource
 
     protected static ?string $navigationLabel = 'Student Information';
 
+    protected static ?int $navigationSort = 5;
+
     public static function form(Form $form): Form
     {
         return $form

@@ -28,7 +28,7 @@ class ProgramResource extends Resource
 
     protected static ?string $navigationLabel = 'Programs';
 
-    protected static ?string $navigationGroup = 'ACADEMIC PROFILE MANAGEMENT';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?int $navigationSort = 4;
 

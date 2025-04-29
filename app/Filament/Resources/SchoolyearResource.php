@@ -32,7 +32,7 @@ class SchoolyearResource extends Resource
 
     protected static ?string $navigationLabel = 'School Years';
 
-    protected static ?string $navigationGroup = 'SCHOOL YEAR MANAGEMENT';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?string $breadcrumb = 'School Years';
 

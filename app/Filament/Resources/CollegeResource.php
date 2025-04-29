@@ -31,7 +31,7 @@ class CollegeResource extends Resource
 
     protected static ?string $breadcrumb = 'Colleges';
 
-    protected static ?string $navigationGroup = 'ACADEMIC PROFILE MANAGEMENT';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?int $navigationSort = 3;
 

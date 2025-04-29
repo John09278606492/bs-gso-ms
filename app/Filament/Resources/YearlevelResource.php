@@ -31,7 +31,7 @@ class YearlevelResource extends Resource
 
     protected static ?string $breadcrumb = 'Year Levels';
 
-    protected static ?string $navigationGroup = 'ACADEMIC PROFILE MANAGEMENT';
+    protected static ?string $navigationGroup = 'Settings';
 
     protected static ?int $navigationSort = 5;
 

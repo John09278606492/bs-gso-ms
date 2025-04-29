@@ -4,6 +4,7 @@ namespace App\Filament\Resources\PayResource\Pages;
 
 use App\Filament\Exports\PayExporter;
 use App\Filament\Resources\PayResource;
+use App\Filament\Resources\PayResource\Widgets\PaysWidget;
 use App\Models\Pay;
 use Filament\Actions;
 use Filament\Actions\Action;
@@ -11,15 +12,24 @@ use Filament\Actions\ExportAction;
 use Filament\Actions\Exports\Enums\ExportFormat;
 use Filament\Actions\Exports\Models\Export;
 use Filament\Notifications\Notification;
+use Filament\Pages\Concerns\ExposesTableToWidgets;
 use Filament\Resources\Pages\ListRecords;
 use Illuminate\Contracts\Support\Htmlable;
 use Illuminate\Support\Facades\Log;
+use Illuminate\Database\Eloquent\Builder;
 
 class ListPays extends ListRecords
 {
+    use ExposesTableToWidgets;
+
     protected static string $resource = PayResource::class;
 
     protected ?string $maxContentWidth = 'full';
+
+    protected function getTableQuery(): ?Builder
+    {
+        return static::getResource()::getEloquentQuery();
+    }
 
     protected function getHeaderActions(): array
     {
@@ -41,14 +51,14 @@ class ListPays extends ListRecords
                 ->color('success')
                 ->icon('heroicon-m-printer')
                 ->label('Export to EXCEL')
-                ->action(function () {
-                    Notification::make()
-                        ->title('EXCEL Export in Progress')
-                        ->body('Your student payment records export is being processed. Please wait for a moment.')
-                        ->info()
-                        ->color('info')
-                        ->send();
-                })
+                // ->action(function () {
+                //     Notification::make()
+                //         ->title('EXCEL Export in Progress')
+                //         ->body('Your student payment records export is being processed. Please wait for a moment.')
+                //         ->info()
+                //         ->color('info')
+                //         ->send();
+                // })
                 ->url(function () {
                     // Retrieve the date filter from the table filters
                     $dateFilter = $this->tableFilters['created_at']['created_at'] ?? null;
@@ -229,6 +239,13 @@ class ListPays extends ListRecords
             //             }
             //         }
             //     })
+        ];
+    }
+
+    public function getHeaderWidgets(): array
+    {
+        return [
+            PaysWidget::class,
         ];
     }
 

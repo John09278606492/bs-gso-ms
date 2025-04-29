@@ -79,6 +79,7 @@ class AdminPanelProvider extends PanelProvider
             // ->brandLogo(fn () => view('brandname'))
             // ->brandLogoHeight('3rem')
             ->login(Login::class)
+            ->topNavigation()
             ->favicon(asset('images/bisu_logo.png'))
             ->defaultThemeMode(ThemeMode::Light)
             ->maxContentWidth(MaxWidth::Full)

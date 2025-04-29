@@ -12,12 +12,14 @@ use Filament\Resources\Resource;
 use Filament\Support\Enums\FontWeight;
 use Filament\Tables;
 use Filament\Tables\Columns\Summarizers\Sum;
+use Filament\Tables\Columns\Summarizers\Summarizer;
 use Filament\Tables\Table;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use Filament\Tables\Filters\Filter;
 use Filament\Tables\Contracts\HasTable;
 use Filament\Tables\Enums\FiltersLayout;
+use Illuminate\Database\Query\Builder as QueryBuilder;
 use Malzariey\FilamentDaterangepickerFilter\Fields\DateRangePicker;
 use Malzariey\FilamentDaterangepickerFilter\Filters\DateRangeFilter;
 use stdClass;
@@ -30,7 +32,9 @@ class PayResource extends Resource
 
     protected static ?string $navigationLabel = 'Payment Records';
 
-    protected static ?string $navigationIcon = 'heroicon-o-banknotes';
+    protected static ?string $navigationIcon = 'heroicon-m-banknotes';
+
+    protected static ?int $navigationSort = 4;
 
     public static function form(Form $form): Form
     {
@@ -100,19 +104,8 @@ class PayResource extends Resource
                     ->label('Amount')
                     ->money('PHP')
                     ->sortable()
-                    ->summarize([
-                        Sum::make()
-                            ->money('PHP')
-                            ->label('Total Amount Paid')
-                            ->query(fn($query) => $query->where('status1', 'paid')), // Sum only for 'paid'
-
-                        Sum::make()
-                            ->money('PHP')
-                            ->label('Total Amount Refunded')
-                            ->query(fn($query) => $query->where('status1', 'refunded')), // Sum only for 'refunded'
-                    ]),
-
             ])
+            ->pluralModelLabel('Pages')
             ->filters([
                 DateRangeFilter::make('created_at')
                     ->label('Date Range')

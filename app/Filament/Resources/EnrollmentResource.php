@@ -53,6 +53,8 @@ class EnrollmentResource extends Resource
 
     protected static ?string $navigationLabel = 'Student Payments';
 
+    protected static ?int $navigationSort = 2;
+
     public $record;
 
     public $payments;
