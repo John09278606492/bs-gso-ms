@@ -58,14 +58,14 @@ class ListEnrollments extends ListRecords
                 ->color('success')
                 ->icon('heroicon-m-printer')
                 ->label('Export to EXCEL')
-                ->action(function () {
-                    Notification::make()
-                        ->title('EXCEL Export in Progress')
-                        ->body('Your student payment information export is being processed. Please wait for a moment.')
-                        ->info()
-                        ->color('info')
-                        ->send();
-                })
+                // ->action(function () {
+                //     Notification::make()
+                //         ->title('EXCEL Export in Progress')
+                //         ->body('Your student payment information export is being processed. Please wait for a moment.')
+                //         ->info()
+                //         ->color('info')
+                //         ->send();
+                // })
                 ->livewireClickHandlerEnabled()
                 ->url(function () {
                     $filters = $this->tableFilters['course_filter'] ?? [];
