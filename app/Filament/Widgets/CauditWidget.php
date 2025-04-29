@@ -72,6 +72,7 @@ class CauditWidget extends BaseWidget
                     ),
 
             ])
+            ->pluralModelLabel('Pages')
             ->filters([
                 Filter::make('collection_filter')
                     ->form([
@@ -137,38 +138,73 @@ class CauditWidget extends BaseWidget
             collections.id,
             collections.description,
             collections.amount,
-            -- Total expected amount (Amount per student * Number of students)
-            COUNT(DISTINCT enrollments.id) * collections.amount as total_amount,
-            -- Calculate total collected amount per student, distributing payments and subtracting refunds
-            COALESCE(SUM(
-                CASE
-                    WHEN pays.status1 = "paid" THEN (pays.amount / student_collections.count)
-                    WHEN pays.status1 = "refunded" THEN (-pays.amount / student_collections.count)
-                    ELSE 0
-                END
-            ), 0) as total_collected_amount,
-            -- Calculate total remaining collection
-            (COUNT(DISTINCT enrollments.id) * collections.amount) - COALESCE(SUM(
-                CASE
-                    WHEN pays.status1 = "paid" THEN (pays.amount / student_collections.count)
-                    WHEN pays.status1 = "refunded" THEN (-pays.amount / student_collections.count)
-                    ELSE 0
-                END
-            ), 0) as total_remaining_collection,
+            COUNT(DISTINCT enrollments.id) * collections.amount AS total_amount,
+            COUNT(CASE
+                WHEN collection_enrollment.collection_status = "paid"
+                THEN 1
+            END) * collections.amount AS total_collected_amount,
+            (COUNT(DISTINCT enrollments.id) * collections.amount)
+                - (COUNT(CASE
+                    WHEN collection_enrollment.collection_status = "paid"
+                    THEN 1
+                END) * collections.amount) AS total_remaining_collection,
             semesters.semester
         ')
             ->leftJoin('semesters', 'collections.semester_id', '=', 'semesters.id')
             ->leftJoin('collection_enrollment', 'collections.id', '=', 'collection_enrollment.collection_id')
             ->leftJoin('enrollments', 'collection_enrollment.enrollment_id', '=', 'enrollments.id')
-            ->leftJoin('pays', 'enrollments.id', '=', 'pays.enrollment_id')
-            ->leftJoinSub(
-                DB::table('collection_enrollment')
-                    ->selectRaw('enrollment_id, COUNT(collection_id) as count')
-                    ->groupBy('enrollment_id'),
-                'student_collections',
-                'student_collections.enrollment_id',
-                'enrollments.id'
-            )
-            ->groupBy('collections.id', 'collections.description', 'semesters.semester', 'collections.amount');
+            ->when($schoolyearId, function ($query) use ($schoolyearId) {
+                $query->where('enrollments.schoolyear_id', $schoolyearId);
+            })
+            ->groupBy('collections.id', 'collections.description', 'collections.amount', 'semesters.semester');
     }
+
+
+    // private function getQuery(): Builder
+    // {
+    //     $schoolyearId = $this->filters['schoolyear_id'] ?? null;
+
+    //     if ($schoolyearId === '' || $schoolyearId === 'All') {
+    //         $schoolyearId = null;
+    //     }
+
+    //     return Collection::query()
+    //         ->selectRaw('
+    //         collections.id,
+    //         collections.description,
+    //         collections.amount,
+    //         -- Total expected amount (Amount per student * Number of students)
+    //         COUNT(DISTINCT enrollments.id) * collections.amount as total_amount,
+    //         -- Calculate total collected amount per student, distributing payments and subtracting refunds
+    //         COALESCE(SUM(
+    //             CASE
+    //                 WHEN pays.status1 = "paid" THEN (pays.amount / student_collections.count)
+    //                 WHEN pays.status1 = "refunded" THEN (-pays.amount / student_collections.count)
+    //                 ELSE 0
+    //             END
+    //         ), 0) as total_collected_amount,
+    //         -- Calculate total remaining collection
+    //         (COUNT(DISTINCT enrollments.id) * collections.amount) - COALESCE(SUM(
+    //             CASE
+    //                 WHEN pays.status1 = "paid" THEN (pays.amount / student_collections.count)
+    //                 WHEN pays.status1 = "refunded" THEN (-pays.amount / student_collections.count)
+    //                 ELSE 0
+    //             END
+    //         ), 0) as total_remaining_collection,
+    //         semesters.semester
+    //     ')
+    //         ->leftJoin('semesters', 'collections.semester_id', '=', 'semesters.id')
+    //         ->leftJoin('collection_enrollment', 'collections.id', '=', 'collection_enrollment.collection_id')
+    //         ->leftJoin('enrollments', 'collection_enrollment.enrollment_id', '=', 'enrollments.id')
+    //         ->leftJoin('pays', 'enrollments.id', '=', 'pays.enrollment_id')
+    //         ->leftJoinSub(
+    //             DB::table('collection_enrollment')
+    //                 ->selectRaw('enrollment_id, COUNT(collection_id) as count')
+    //                 ->groupBy('enrollment_id'),
+    //             'student_collections',
+    //             'student_collections.enrollment_id',
+    //             'enrollments.id'
+    //         )
+    //         ->groupBy('collections.id', 'collections.description', 'semesters.semester', 'collections.amount');
+    // }
 }
