@@ -89,7 +89,7 @@ class StudentpaymentExport implements WithMapping, WithHeadings, ShouldAutoSize,
 
         $this->totalBalance += $balance;
         $this->totalPayments += $payments;
-        $this->totalRefunds += $refundable_amount;
+        $this->totalRefunds += $this->refund;
 
         return [
             ++$this->rowNumber,
