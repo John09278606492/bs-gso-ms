@@ -83,13 +83,17 @@ class StudentpaymentExport implements WithMapping, WithHeadings, ShouldAutoSize,
 
         $this->refund = number_format($balance, 2);
 
-        if ($balance < 0) {
-            $this->refund = 'Refundable Amount: ' . number_format(abs($balance), 2);
-        }
+        // if ($balance < 0) {
+        //     $this->refund = 'Refundable Amount: ' . number_format(abs($balance), 2);
+        // }
 
         $this->totalBalance += $balance;
         $this->totalPayments += $payments;
-        $this->totalRefunds += $refundable_amount;
+
+        if ($balance < 0) {
+            $this->refund = 'Refundable Amount: ' . number_format(abs($balance), 2);
+            $this->totalRefunds += abs($balance);
+        }
 
         return [
             ++$this->rowNumber,
